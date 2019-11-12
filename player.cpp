@@ -1,13 +1,15 @@
 #include "player.h"
 #include "bank.h"
 #include "property.h"
+#include "QLandingWindows.h"
 
 #include <QLabel>
 #include <string>
 
 class Board;
 
-Player::Player(const std::string &_name, bool makeInteractor):
+Player::Player(const std::string &_name, Bank* _bank, Board* _board, bool makeInteractor):
+    bank(_bank), board(_board),
     boardPos(0) , playerMoney(1500), playerProperties(), name(_name) {
     if (makeInteractor) { //if wanted to make Interactor make one
        interactor= new QInteractor(this);
@@ -30,7 +32,7 @@ Player::Player(const Player& oth){
     }
 }
 
-Player::Player(Player&& oth):Player(""){
+Player::Player(Player&& oth):Player("",nullptr,nullptr){
     swap(*this, oth);
 }
 
@@ -96,9 +98,12 @@ Player::QInteractor::QInteractor(Player* _player): player(_player) {}
 
 void Player::QInteractor::buyBankProp() {
     if(player->buyPropertyBank()){//able to buy property
-        (player->buyPropertyBank());//send it
+    QLandNoOptions* successMessage = new QLandNoOptions(player->playerProperties.back()->generateView(), //newest property will be at back of player's properties
+                                                        "Property purchased!") ;
     }
     else {
+    QLandNoOptions* failureMessage= new QLandNoOptions((player->board->getTile(player->getPos()))->generateView(),
+                                                       "Unable to purchase property (:/)");
         emit buyPropFail();
     }
 

@@ -59,10 +59,6 @@ void Property::landingEvent(Player* currPlayer) {
         QObject::connect(propWindow->getLeft(),&QPushButton::clicked,     //connects Yes button to player buy fxn
                          currPlayer->interactor, &Player::QInteractor::buyBankProp);
 
-        QObject::connect(propWindow->getRight(), &QPushButton::clicked,   //connect No button to closing pop up window
-                         propWindow, &QWidget::close);
-
-	
 	}
 	
 }

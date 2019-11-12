@@ -23,7 +23,7 @@ class Player{
 
 public:
     //big 4
-    Player(const std::string& _name, bool makeInteractor = true );
+    Player(const std::string& _name, Bank* _bank, Board* _board, bool makeInteractor = true );
     Player(const Player& oth);
     Player(Player&& oth);
     Player& operator = (Player oth);
@@ -61,19 +61,19 @@ public:
     */
     int getPos() const;
 
-	/**
-	buys property from another player 
-	
-//	@return true if other player accepts the deal.
-//	*/
-//	bool buyPropertyPlayer (?? ,Dollars price) // unsure of params/implementation for this one
-	
 
     /**
     attempts to buy property that player is currently on from bank.
     return false if not enough money to purchase property.
     */
     bool buyPropertyBank();
+
+    /**
+    buys property from another player
+    @return true if other player accepts the deal.
+
+    bool buyPropertyPlayer (?? ,Dollars price) // unsure of params/implementation for this one
+    */
 
     //swap for copy and swap idiom
     friend void swap(Player& left, Player& right){

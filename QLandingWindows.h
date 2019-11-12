@@ -52,3 +52,16 @@ private:
     QPushButton* right;
 
 };
+
+class QLandNoOptions: public QLandingWindow {
+public:
+    QLandNoOptions(QWidget* _mainWidget,
+                   const QString& _message,
+                   const QString& buttonText= "Okay",
+                   QWidget* parent = nullptr);
+
+private:
+    QLabel* message;
+    QPushButton* button;
+
+};

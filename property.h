@@ -20,6 +20,7 @@ public:
 
     /**
     for use for building a property from a line of "tileBuilder.txt"
+    @param formattedLine properly formatted line from tileBuilder.txt
     */
     Property(const std::string& formattedLine);
 
@@ -32,7 +33,7 @@ public:
     generates a QWidget with the approperiate property tile painted onto it
 	@return pointer to viewing window to allow for manipulation. 
 	*/
-    virtual QWidget* generateView ();
+    virtual QWidget* generateView () override;
 
     /**
     Implements landing event w/ prompt to
