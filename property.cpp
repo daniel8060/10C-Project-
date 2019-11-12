@@ -114,8 +114,8 @@ Property::View::View(const Property& prop)  {
 
 //    image= QPixmap(":/Properties/Assets/Properties/BlueProperty.png");
 
-
-    std::string fileName= ":/Properties/Assets/Properties/"+prop.color+"Property.png";
+//:/properties/greenProperty.png
+    std::string fileName= ":/properties/"+prop.color+"Property.png";
     QString qfileName(QString::fromStdString(fileName));
     image = QPixmap(qfileName);
     setMinimumSize(320,384);
