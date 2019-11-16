@@ -17,7 +17,6 @@ class Property;
 class Player{
 
 	friend Bank;
-    friend ownableTile;
     friend Property;
 
     class QInteractor;
@@ -70,10 +69,11 @@ public:
     bool buyPropertyBank();
 
     /**
-    player can call when they are on a tile to trigger the tile's landing event.
-    */
-    void land ();
+    buys property from another player
+    @return true if other player accepts the deal.
 
+    bool buyPropertyPlayer (?? ,Dollars price) // unsure of params/implementation for this one
+    */
 
     //swap for copy and swap idiom
     friend void swap(Player& left, Player& right){
@@ -91,7 +91,7 @@ private:
     Board* board;
 	int boardPos; //position on board 
 	Dollars playerMoney; //stores player money
-    std::vector<ownableTile*> playerProperties;
+	std::vector<Property*> playerProperties;
     QInteractor* interactor;
     std::string name;
 	
@@ -107,7 +107,6 @@ public:
 
 public slots:
     void buyBankProp ();
-    void payRent ();
 signals:
     void buyPropFail();
 
