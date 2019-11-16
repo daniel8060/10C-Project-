@@ -9,6 +9,9 @@
 #include <QApplication>
 #include <QLabel>
 #include <string>
+#include <vector>
+
+using namespace std;
 
 int main(int argc, char *argv[])
 {
@@ -19,9 +22,14 @@ int main(int argc, char *argv[])
 
      std::string name("jeff");
      Player* jeff = new Player(name,&bank,&board) ;
-     jeff->move(9);
+     Player* BIGMIKE= new Player("BIG MIKE",&bank, &board);
 
-    board.getTile(jeff->getPos())->landingEvent(jeff);
+
+     jeff->move(9);
+     BIGMIKE->move(9);
+
+    jeff->land();
+
 
 
 

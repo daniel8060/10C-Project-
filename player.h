@@ -69,6 +69,11 @@ public:
     */
     bool buyPropertyBank();
 
+    /**
+    player can call when they are on a tile to trigger the tile's landing event.
+    */
+    void land ();
+
 
     //swap for copy and swap idiom
     friend void swap(Player& left, Player& right){
@@ -102,6 +107,7 @@ public:
 
 public slots:
     void buyBankProp ();
+    void payRent ();
 signals:
     void buyPropFail();
 

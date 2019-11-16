@@ -15,11 +15,17 @@ public:
     Tile (int _tileNum, Board* _board): tileNumber(_tileNum), board(_board)  {}
 
 	
-	
+    //all comparisons just compare the tile number.  so we can sort tiles, if necessary.
+    bool operator > (const Tile& oth) const;
+    bool operator < (const Tile& oth) const;
+    bool operator ==(const Tile& oth) const;
+    bool operator !=(const Tile& oth) const;
+    bool operator >=(const Tile& oth) const;
+
+
     /**
-    most important method of the game, probably.
-    called at the end of every movement so that the landed on tile exhibits its
-    desired behavior (e.g. a popup window for landing on a property w/ the option to buy.)
+    Call to implement desired behavior of a given tile.
+    (e.g. a popup window for landing on a property w/ the option to buy.)
     */
 	virtual void landingEvent(Player* currPlayer) =0;
 
@@ -51,8 +57,11 @@ public:
 
     virtual void landingEvent(Player *currPlayer) override;
 
-    virtual QWidget * generateView() =0;
 
+    /**
+    returns tile's rent to be paid.  Calculation varies on subtype of ownableTile
+    @return rent due for this tile.
+    */
     virtual int currentRent() const = 0;
 
     /**
@@ -81,7 +90,7 @@ class eventTile : public Tile {
 public:
 
 
-    virtual ~eventTile() = default;
+    virtual ~eventTile() override = default;
 
 };
 
