@@ -112,7 +112,8 @@ Property::View::View(const Property& prop)  {
 
 //    image= QPixmap(":/Properties/Assets/Properties/BlueProperty.png");
 
-// :/properties/blueProperty.png
+//:/properties/greenProperty.png
+ master
     std::string fileName= ":/properties/"+prop.color+"Property.png";
     QString qfileName(QString::fromStdString(fileName));
     image = QPixmap(qfileName);
