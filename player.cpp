@@ -56,11 +56,7 @@ bool Player::pay(Player* payee, int amt) {
 			playerMoney-= amt;
 			return true;
 		}
-        else{
-        payee->playerMoney+= playerMoney;
-        playerMoney = 0; //give payee all of current money
 		return false; //not enough money to make the payment
-        }
 	}
 	return false; //not a valid target 
 }
@@ -95,10 +91,6 @@ void Player::move(int val) {boardPos+=val;}
 
 int Player::getPos() const {return boardPos;}
 
-void Player::land()  {
-    board->getTile(this->boardPos)->landingEvent(this);
-}
-
 //
 //Player::QInteractor stuff
 //
@@ -116,9 +108,4 @@ void Player::QInteractor::buyBankProp() {
     }
 
 
-}
-
-void Player::QInteractor::payRent() {
-    ownableTile* prop = dynamic_cast<ownableTile*> (player->board->getTile((this->player->getPos()))); //prop is the tile the player is on.
-    prop->propOwner()->take(this->player, prop->currentRent()); //owner of the property that the curr player is on takes appropriate amount of money from curr player .
 }

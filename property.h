@@ -11,10 +11,8 @@ class Bank;
 class Player;
 
 
-/**
-represents normal property tiles
-*/
-class Property : public ownableTile{
+
+class Property : public Tile{
 public:
 
     friend Player;
@@ -24,8 +22,9 @@ public:
     for use for building a property from a line of "tileBuilder.txt"
     @param formattedLine properly formatted line from tileBuilder.txt
     */
-    Property(const std::string& formattedLine, Board* _board);
+    Property(const std::string& formattedLine);
 
+    Property(): Tile(0), owner(nullptr) {}
 
     Property(const Property& oth) = default;
 
@@ -42,8 +41,20 @@ public:
     purchase property if desired if unowned
     @param currPlayer player whose turn it is.
     */
-    //virtual void landingEvent(Player* currPlayer) override;
+	virtual void landingEvent(Player* currPlayer) override;
 	
+
+
+	/***
+	@return owner of this property
+	*/
+	Player* propOwner() const;
+	
+	/***
+	changes owner of this property 
+	@param newOwner new owner of property
+	*/
+    void transfer(Player* newOwner);
 
 	/**
 	adds a house/hotel as appropriate if there are any remaining in the bank
@@ -57,10 +68,12 @@ public:
 	returns rent amount taking into account current number of houses
 	@return 0 if unowned, otherwise the appropriate rent.
 	*/
-    int currentRent() const override;
+	int currentRent() const;
 
 
 private:
+
+	Player* owner;
 	std::string color;
 	std::string name;
 	
@@ -91,24 +104,5 @@ private:
 
 };
 
-/**
-utilities aka water company and electric company from regular game.
-*/
-
-class Utility : public ownableTile {
-public:
-Utility(const std::string& formattedLine, Board* _board);
-
-
-
-/**
-check if both utilities are owned by same person.
-*/
-bool checkSameOwner() const;
-
-private:
-
-
-};
 
 #endif

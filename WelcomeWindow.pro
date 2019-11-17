@@ -27,7 +27,6 @@ SOURCES += \
     playerinfodisplay.cpp \
     property.cpp \
     subwindow.cpp \
-    tile.cpp \
     welcomewindow.cpp
 
 HEADERS += \
